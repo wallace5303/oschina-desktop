@@ -50,14 +50,7 @@ export default {
   methods: {
     menuHandle () {
       this.current = this.default_key; 
-      switch (this.id) {
-        case 'base' :
-          this.menu = subMenu.base;
-          break;
-        case 'other' :
-          this.menu = subMenu.other;
-          break;                                    
-      }
+      this.menu = subMenu[this.id];
       const linkInfo = this.menu[this.current];
       this.$router.push({ name: linkInfo.pageName, params: linkInfo.params});
     },

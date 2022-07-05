@@ -33,11 +33,23 @@ export default {
       menu: {
         'menu_1' : {
           icon: 'home',
-          title: '框架',
-          pageName: 'Base',
+          title: '资讯区',
+          pageName: 'Information',
           params: {},
         },
         'menu_2' : {
+          icon: 'home',
+          title: 'gitee',
+          pageName: 'Gitee',
+          params: {},
+        },
+        'menu_3' : {
+          icon: 'home',
+          title: '企业版',
+          pageName: 'Enterprise',
+          params: {},
+        },
+        'menu_4' : {
           icon: 'desktop',
           title: '其它',
           pageName: 'Other',

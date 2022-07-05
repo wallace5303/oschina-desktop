@@ -10,87 +10,27 @@ export const constantRouterMap = [
     component: AppSider,
     children: [
       {
-        path: '/base',
-        name: 'Base',
+        path: '/information',
+        name: 'Information',
         component: Menu,
-        props: { id: 'base' },
-        redirect: { name: 'BaseFileIndex' },
+        props: { id: 'information' },
+        redirect: { name: 'InformationZongheIndex' },
         children: [
           {
-            path: '/base/file/index',
-            name: 'BaseFileIndex',
-            component: () => import('@/views/base/file/Index')
+            path: '/information/zonghe/index',
+            name: 'InformationZongheIndex',
+            component: () => import('@/views/information/zonghe/Index')
           },
           {
-            path: '/base/socket/ipc',
-            name: 'BaseSocketIpc',
-            component: () => import('@/views/base/socket/Ipc')
+            path: '/information/soft/index',
+            name: 'InformationSoftIndex',
+            component: () => import('@/views/information/soft/Index')
           },
           {
-            path: '/base/db/index',
-            name: 'BaseDBIndex',
-            component: () => import('@/views/base/db/Index')
+            path: '/information/latest/index',
+            name: 'InformationLatestIndex',
+            component: () => import('@/views/information/latest/Index')
           },
-          {
-            path: '/base/windowview/index',
-            name: 'BaseWindowViewIndex',
-            component: () => import('@/views/base/windowview/Index')
-          },
-          {
-            path: '/base/window/index',
-            name: 'BaseWindowIndex',
-            component: () => import('@/views/base/window/Index')
-          },
-          {
-            path: '/base/notification/index',
-            name: 'BaseNotificationIndex',
-            component: () => import('@/views/base/notification/Index')
-          },
-          {
-            path: '/base/powermonitor/index',
-            name: 'BasePowerMonitorIndex',
-            component: () => import('@/views/base/powermonitor/Index')
-          },
-          {
-            path: '/base/screen/index',
-            name: 'BaseScreenIndex',
-            component: () => import('@/views/base/screen/Index')
-          },
-          {
-            path: '/base/theme/index',
-            name: 'BaseThemeIndex',
-            component: () => import('@/views/base/theme/Index')
-          },                               
-          {
-            path: '/base/software/index',
-            name: 'BaseSoftwareIndex',
-            component: () => import('@/views/base/software/Index')
-          },
-          {
-            path: '/base/socket/httpserver',
-            name: 'BaseSocketHttpServer',
-            component: () => import('@/views/base/socket/HttpServer')
-          },
-          {
-            path: '/base/socket/socketserver',
-            name: 'BaseSocketSocketServer',
-            component: () => import('@/views/base/socket/SocketServer')
-          },          
-          {
-            path: '/base/system/index',
-            name: 'BaseSystemIndex',
-            component: () => import('@/views/base/system/Index')
-          },
-          {
-            path: '/base/testapi/index',
-            name: 'BaseTestApiIndex',
-            component: () => import('@/views/base/testapi/Index')
-          },
-          {
-            path: '/base/updater/index',
-            name: 'BaseUpdaterIndex',
-            component: () => import('@/views/base/updater/Index')
-          },  
         ]  
       },
       {
