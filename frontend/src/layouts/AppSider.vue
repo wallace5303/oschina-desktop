@@ -33,7 +33,7 @@ export default {
       menu: {
         'menu_1' : {
           icon: 'home',
-          title: '资讯区',
+          title: '资讯',
           pageName: 'Information',
           params: {},
         },
@@ -95,6 +95,8 @@ export default {
       margin-top: 0px;
       margin-bottom: 0px;
       padding: 0 0px !important;
+      text-align: left;
+      margin-left: 10px;
     }
   }
   .layout-content {

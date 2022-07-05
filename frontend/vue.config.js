@@ -12,7 +12,7 @@ module.exports = {
       config
         .plugin('html')
         .tap(args => {
-          args[0].title= '开源中国客户端-非官方' // 设置title
+          args[0].title= '开源中国-非官方' // 设置title
           return args
         })
     },
