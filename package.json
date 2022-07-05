@@ -1,7 +1,7 @@
 {
-  "name": "ee",
-  "version": "2.1.5",
-  "description": "A fast, desktop software development framework",
+  "name": "oschina-desktop",
+  "version": "1.0.0",
+  "description": "开源中国客户端-非官方",
   "main": "main.js",
   "scripts": {
     "start": "electron . ",
@@ -31,8 +31,8 @@
     "events": {}
   },
   "build": {
-    "productName": "ee",
-    "appId": "com.electron.ee",
+    "productName": "oschina-desktop",
+    "appId": "com.electron.oschina-desktop",
     "copyright": "wallace5303",
     "directories": {
       "output": "out"
@@ -61,12 +61,12 @@
       "installerHeaderIcon": "./build/icons/icon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "EE框架"
+      "shortcutName": "开源中国客户端"
     },
     "publish": [
       {
         "provider": "generic",
-        "url": "https://github.com/wallace5303/electron-egg"
+        "url": "https://github.com/wallace5303/oschina-desktop"
       }
     ],
     "mac": {
@@ -95,7 +95,7 @@
       "category": "Utility"
     }
   },
-  "repository": "https://github.com/wallace5303/ee.git",
+  "repository": "https://github.com/wallace5303/oschina-desktop.git",
   "keywords": [
     "Electron"
   ],
