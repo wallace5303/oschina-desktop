@@ -38,19 +38,19 @@ export default {
           params: {},
         },
         'menu_2' : {
-          icon: 'home',
+          icon: 'code',
           title: 'gitee',
           pageName: 'Gitee',
           params: {},
         },
         'menu_3' : {
-          icon: 'home',
-          title: '企业版',
+          icon: 'cloud-server',
+          title: '企业',
           pageName: 'Enterprise',
           params: {},
         },
         'menu_4' : {
-          icon: 'desktop',
+          icon: 'setting',
           title: '其它',
           pageName: 'Other',
           params: {},
