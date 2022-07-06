@@ -6,10 +6,13 @@
       </span>
     </div>  
     <div class="one-block-2">
-      <a-space>
-        <a-button @click="exec(1)"> 点击 </a-button>
-        <a-button @click="exec2(1)"> 点击2 </a-button>
-      </a-space>
+      <a-timeline>
+        <a-timeline-item>
+          <a :href="loginUrl" target="_blank">
+            登录
+          </a>
+        </a-timeline-item>
+      </a-timeline>
     </div>
   </div>
 </template>
@@ -20,6 +23,7 @@ export default {
   data() {
     return {
       type: 1,
+      loginUrl: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state=abc&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify'
     };
   },
   methods: {

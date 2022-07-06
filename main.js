@@ -1,4 +1,5 @@
 const Appliaction = require('ee-core').Appliaction;
+const {shell} = require('electron');
 
 class Main extends Appliaction {
 
@@ -26,7 +27,14 @@ class Main extends Appliaction {
    */
   async windowReady () {
     // do some things
-
+    // 链接控制
+    const win = this.electron.mainWindow;
+    win.webContents.setWindowOpenHandler(({ url }) => {
+      console.log('watch url:', url);
+      // 使用默认浏览器打开连接
+      shell.openExternal(url);
+      return { action: 'deny' }
+    })
   }
 
   /**
