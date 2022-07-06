@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       type: 1,
-      loginUrl: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state=abc&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify'
+      loginUrl: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state={"app_id":"oschina_desktop"}&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify'
     };
   },
   methods: {
