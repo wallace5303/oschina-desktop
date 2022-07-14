@@ -14,8 +14,13 @@ export const constantRouterMap = [
         name: 'Information',
         component: Menu,
         props: { id: 'information' },
-        redirect: { name: 'InformationZongheIndex' },
+        redirect: { name: 'InformationAllIndex' },
         children: [
+          {
+            path: '/information/all/index',
+            name: 'InformationAllIndex',
+            component: () => import('@/views/information/all/Index')
+          },
           {
             path: '/information/zonghe/index',
             name: 'InformationZongheIndex',
@@ -26,24 +31,61 @@ export const constantRouterMap = [
             name: 'InformationSoftIndex',
             component: () => import('@/views/information/soft/Index')
           },
-          {
-            path: '/information/latest/index',
-            name: 'InformationLatestIndex',
-            component: () => import('@/views/information/latest/Index')
-          },
         ]  
       },
       {
-        path: '/other',
-        name: 'Other',
+        path: '/gitee',
+        name: 'Gitee',
         component: Menu,
-        props: { id: 'other' },
-        redirect: { name: 'OtherTestIndex' },
+        props: { id: 'gitee' },
+        redirect: { name: 'GiteeTestIndex' },
         children: [
           {
-            path: '/other/test/index',
-            name: 'OtherTestIndex',
-            component: () => import('@/views/other/test/Index')
+            path: '/gitee/test/index',
+            name: 'GiteeTestIndex',
+            component: () => import('@/views/gitee/test/Index')
+          },
+        ] 
+      },
+      {
+        path: '/enterprise',
+        name: 'Enterprise',
+        component: Menu,
+        props: { id: 'enterprise' },
+        redirect: { name: 'EnterpriseTestIndex' },
+        children: [
+          {
+            path: '/enterprise/test/index',
+            name: 'EnterpriseTestIndex',
+            component: () => import('@/views/enterprise/test/Index')
+          },
+        ] 
+      },
+      {
+        path: '/user',
+        name: 'User',
+        component: Menu,
+        props: { id: 'user' },
+        redirect: { name: 'UserTestIndex' },
+        children: [
+          {
+            path: '/other/user/index',
+            name: 'UserTestIndex',
+            component: () => import('@/views/user/test/Index')
+          },
+        ] 
+      },                  
+      {
+        path: '/setting',
+        name: 'Setting',
+        component: Menu,
+        props: { id: 'setting' },
+        redirect: { name: 'SettingTestIndex' },
+        children: [
+          {
+            path: '/setting/test/index',
+            name: 'SettingTestIndex',
+            component: () => import('@/views/setting/test/Index')
           },
         ] 
       }

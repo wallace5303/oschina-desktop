@@ -21,6 +21,16 @@ class StorageService extends Service {
       preferences: 'preferences',
       test_data: 'test_data'
     };
+    
+    // sqlite数据库
+    let sqliteOptions = {
+      driver: 'sqlite',
+      default: {
+        timeout: 6000,
+        verbose: console.log // 打印sql语法
+      }
+    }
+    this.demoSqliteDB = Storage.JsonDB.connection('sqlite-demo.db', sqliteOptions);
   }
 
   /*

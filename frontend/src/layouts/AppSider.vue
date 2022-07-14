@@ -50,9 +50,15 @@ export default {
           params: {},
         },
         'menu_4' : {
+          icon: 'user',
+          title: '我的',
+          pageName: 'User',
+          params: {},
+        }, 
+        'menu_5' : {
           icon: 'setting',
-          title: '其它',
-          pageName: 'Other',
+          title: '设置',
+          pageName: 'Setting',
           params: {},
         },              
       }
