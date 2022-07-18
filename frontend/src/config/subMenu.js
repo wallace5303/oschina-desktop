@@ -5,7 +5,7 @@ export default {
 	information: {
 		'menu_100' : {
 			icon: 'profile',
-			title: '全部',
+			title: '资讯',
 			pageName: 'InformationAllIndex',
 			params: {}
 		},
