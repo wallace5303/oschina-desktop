@@ -6,18 +6,10 @@
       </span>
     </div>  
     <div class="one-block-2">
-      <a-timeline>
-        <a-timeline-item>
-          <a :href="loginUrl" target="_blank">
-            登录
-          </a>
-        </a-timeline-item>
-        <a-timeline-item>
-          <a :href="tokenUrl" target="_blank">
-            getToken
-          </a>
-        </a-timeline-item>
-      </a-timeline>
+      <a-space>
+        <a-button @click="exec(1)"> 点击 </a-button>
+        <a-button @click="exec2(1)"> 点击2 </a-button>
+      </a-space>
     </div>
   </div>
 </template>
@@ -28,8 +20,6 @@ export default {
   data() {
     return {
       type: 1,
-      loginUrl: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state={"app_id":"oschina_desktop"}&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify',
-      //tokenUrl: 'https://www.oschina.net/action/openapi/token?client_id=KUM768r2I1qA00RUUAyp&client_secret=ZNtK1hKTbMRYhzgmTrkk7lmV6UjJtrXc&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Ftoken&code=vtlOEI&dataType=json',
     };
   },
   methods: {

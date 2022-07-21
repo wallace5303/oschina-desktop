@@ -14,22 +14,42 @@ export const constantRouterMap = [
         name: 'Information',
         component: Menu,
         props: { id: 'information' },
-        redirect: { name: 'InformationAllIndex' },
+        redirect: { name: 'InformationNewsIndex' },
         children: [
           {
-            path: '/information/all/index',
-            name: 'InformationAllIndex',
-            component: () => import('@/views/information/all/Index')
+            path: '/information/news/index',
+            name: 'InformationNewsIndex',
+            component: () => import('@/views/information/news/Index')
           },
           {
-            path: '/information/zonghe/index',
-            name: 'InformationZongheIndex',
-            component: () => import('@/views/information/zonghe/Index')
+            path: '/information/blog/index',
+            name: 'InformationBlogIndex',
+            component: () => import('@/views/information/blog/Index')
+          },
+          {
+            path: '/information/post/index',
+            name: 'InformationPostIndex',
+            component: () => import('@/views/information/post/Index')
           },
           {
             path: '/information/soft/index',
             name: 'InformationSoftIndex',
             component: () => import('@/views/information/soft/Index')
+          },
+          {
+            path: '/information/favorite/index',
+            name: 'InformationFavoriteIndex',
+            component: () => import('@/views/information/favorite/Index')
+          },
+          {
+            path: '/information/message/index',
+            name: 'InformationMessageIndex',
+            component: () => import('@/views/information/message/Index')
+          },
+          {
+            path: '/information/notice/index',
+            name: 'InformationNoticeIndex',
+            component: () => import('@/views/information/notice/Index')
           },
         ]  
       },
