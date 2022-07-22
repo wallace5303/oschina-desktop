@@ -53,7 +53,7 @@ export const constantRouterMap = [
         name: 'Gitee',
         component: Menu,
         props: { id: 'gitee' },
-        redirect: { name: 'GiteeTestIndex' },
+        redirect: { name: 'GiteeRecommendIndex' },
         children: [
           {
             path: '/gitee/recommend/index',

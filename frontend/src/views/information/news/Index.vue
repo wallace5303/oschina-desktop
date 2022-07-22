@@ -12,11 +12,6 @@
             登录
           </a>
         </a-timeline-item>
-        <a-timeline-item>
-          <a :href="tokenUrl" target="_blank">
-            getToken
-          </a>
-        </a-timeline-item>
       </a-timeline>
     </div>
   </div>
@@ -29,7 +24,6 @@ export default {
     return {
       type: 1,
       loginUrl: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state={"app_id":"oschina_desktop"}&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify',
-      //tokenUrl: 'https://www.oschina.net/action/openapi/token?client_id=KUM768r2I1qA00RUUAyp&client_secret=ZNtK1hKTbMRYhzgmTrkk7lmV6UjJtrXc&grant_type=authorization_code&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Ftoken&code=vtlOEI&dataType=json',
     };
   },
   methods: {

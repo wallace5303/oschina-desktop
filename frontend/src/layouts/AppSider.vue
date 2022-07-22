@@ -32,7 +32,7 @@ export default {
       collapsed: true,
       default_key: 'menu_1',
       current: '',
-      menu: {}
+      menu: siderMenu
     };
   },
   created () {
@@ -43,9 +43,9 @@ export default {
   methods: {
     menuHandle (e) {
       this.current = e ? e.key : this.default_key;
-      this.menu = siderMenu[this.id];
+      console.log('c:', this.current);
       const linkInfo = this.menu[this.current]
-      console.log('[sider] load page:', linkInfo.pageName);
+      console.log('[home] load page:', linkInfo.pageName);
       this.$router.push({ name: linkInfo.pageName, params: linkInfo.params})
     },
   },
