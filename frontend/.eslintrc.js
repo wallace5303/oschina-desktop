@@ -12,7 +12,7 @@ module.exports = {
   extends: ['plugin:vue/recommended', 'eslint:recommended'],
   rules: {
     'no-console': 'off',
-    "no-unused-vars":"off", //重要 var 变量为引入
+    "no-unused-vars": 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     "no-tabs":"off",
     'generator-star-spacing': 'off',
@@ -34,6 +34,7 @@ module.exports = {
     'vue/no-use-v-if-with-v-for': 0,
     'vue/html-closing-bracket-newline': 0,
     'vue/no-parsing-error': 0,
+    'vue/no-unused-vars': "off",
     'no-tabs': 0,
     'quotes': 0,
     'semi': 0,

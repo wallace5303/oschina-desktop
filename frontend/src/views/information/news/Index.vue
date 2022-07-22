@@ -1,29 +1,131 @@
 <template>
   <div id="app-base-test-api">
     <div class="one-block-1">
-      <span>
-        1. 测试一些操作系统api
-      </span>
+      <a-tabs default-active-key="1">
+        <a-tab-pane key="1">
+          <span slot="tab">
+            <!-- <a-icon type="apple" /> -->
+            最新资讯
+          </span>
+          <div class="one-block-3">
+            <a-list item-layout="vertical" size="large" :data-source="listData">
+              <a-list-item slot="renderItem" key="item.title" slot-scope="item, index">
+                <template v-for="{ type, text } in actions" slot="actions">
+                  <span :key="type">
+                    <a-icon :type="type" style="margin-right: 8px" />
+                    {{ text }}
+                  </span>
+                </template>
+                <img
+                  slot="extra"
+                  width="272"
+                  alt="logo"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                />
+                <a-list-item-meta :description="item.description">
+                  <a slot="title" :href="item.href">{{ item.title }}</a>
+                  <a-avatar slot="avatar" :src="item.avatar" />
+                </a-list-item-meta>
+                {{ item.content }}
+              </a-list-item>
+            </a-list>
+          </div>
+        </a-tab-pane>
+        <a-tab-pane key="2">
+          <span slot="tab">
+            <!-- <a-icon type="android" /> -->
+            综合资讯
+          </span>
+          <div class="one-block-3">
+            <a-list item-layout="vertical" size="large" :data-source="listData">
+              <a-list-item slot="renderItem" key="item.title" slot-scope="item, index">
+                <template v-for="{ type, text } in actions" slot="actions">
+                  <span :key="type">
+                    <a-icon :type="type" style="margin-right: 8px" />
+                    {{ text }}
+                  </span>
+                </template>
+                <img
+                  slot="extra"
+                  width="272"
+                  alt="logo"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                />
+                <a-list-item-meta :description="item.description">
+                  <a slot="title" :href="item.href">{{ item.title }}</a>
+                  <a-avatar slot="avatar" :src="item.avatar" />
+                </a-list-item-meta>
+                {{ item.content }}
+              </a-list-item>
+            </a-list>
+          </div>
+        </a-tab-pane>
+        <a-tab-pane key="3">
+          <span slot="tab">
+            <!-- <a-icon type="android" /> -->
+            软件更新
+          </span>
+          <div class="one-block-3">
+            <a-list item-layout="vertical" size="large" :data-source="listData">
+              <a-list-item slot="renderItem" key="item.title" slot-scope="item, index">
+                <template v-for="{ type, text } in actions" slot="actions">
+                  <span :key="type">
+                    <a-icon :type="type" style="margin-right: 8px" />
+                    {{ text }}
+                  </span>
+                </template>
+                <img
+                  slot="extra"
+                  width="272"
+                  alt="logo"
+                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                />
+                <a-list-item-meta :description="item.description">
+                  <a slot="title" :href="item.href">{{ item.title }}</a>
+                  <a-avatar slot="avatar" :src="item.avatar" />
+                </a-list-item-meta>
+                {{ item.content }}
+              </a-list-item>
+            </a-list>
+          </div>
+        </a-tab-pane>
+      </a-tabs>
     </div>  
     <div class="one-block-2">
-      <a-timeline>
-        <a-timeline-item>
-          <a :href="loginUrl" target="_blank">
-            登录
-          </a>
-        </a-timeline-item>
-      </a-timeline>
     </div>
   </div>
 </template>
 <script>
-import { ipcApiRoute, requestHttp } from '@/api/main'
+import { ipcApiRoute } from '@/api/main'
+
+const listData = [];
+for (let i = 0; i < 2; i++) {
+  listData.push({
+    href: 'https://www.antdv.com/',
+    title: `ant design vue part ${i}`,
+    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+    description:
+      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+    content:
+      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+  });
+}
 
 export default {
   data() {
     return {
-      type: 1,
-      loginUrl: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state={"app_id":"oschina_desktop"}&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify',
+      listData,
+      pagination: {
+        onChange: page => {
+          console.log(page);
+        },
+        pageSize: 3,
+      },
+      actions: [
+        { type: 'star-o', text: '156' },
+        { type: 'like-o', text: '156' },
+        { type: 'message', text: '2' },
+      ],
     };
   },
   methods: {
@@ -34,21 +136,13 @@ export default {
       this.$ipcInvoke(ipcApiRoute.test, params).then(res => {
         console.log('res:', res)
       }) 
-    },
-    exec2 (id) {
-      const params = {
-        id: id
-      }
-      requestHttp(ipcApiRoute.test, params).then(res => {
-        console.log('res2:', res)
-      }) 
-    },    
+    },  
   }
 };
 </script>
 <style lang="less" scoped>
 #app-base-test-api {
-  padding: 0px 10px;
+  padding: 0px 30px;
   text-align: left;
   width: 100%;
   .one-block-1 {
@@ -57,6 +151,9 @@ export default {
   }
   .one-block-2 {
     padding-top: 10px;
+  }
+  .one-block-3 {
+    //padding-top: 10px;
   }
 }
 </style>
