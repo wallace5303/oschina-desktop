@@ -20,7 +20,7 @@
   </a-layout>
 </template>
 <script>
-import subMenu from '@/config/subMenu'
+import { subMenu } from '@/config/menu'
 
 export default {
   props: {

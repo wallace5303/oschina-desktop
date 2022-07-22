@@ -23,6 +23,8 @@
   </a-layout>
 </template>
 <script>
+import { siderMenu } from '@/config/menu'
+
 export default {
   name: 'AppSider',
   data() {
@@ -30,38 +32,7 @@ export default {
       collapsed: true,
       default_key: 'menu_1',
       current: '',
-      menu: {
-        'menu_1' : {
-          icon: 'home',
-          title: '资讯',
-          pageName: 'Information',
-          params: {},
-        },
-        'menu_2' : {
-          icon: 'code',
-          title: 'gitee',
-          pageName: 'Gitee',
-          params: {},
-        },
-        'menu_3' : {
-          icon: 'cloud-server',
-          title: '企业',
-          pageName: 'Enterprise',
-          params: {},
-        },
-        'menu_4' : {
-          icon: 'user',
-          title: '我的',
-          pageName: 'User',
-          params: {},
-        }, 
-        'menu_5' : {
-          icon: 'setting',
-          title: '设置',
-          pageName: 'Setting',
-          params: {},
-        },              
-      }
+      menu: {}
     };
   },
   created () {
@@ -72,8 +43,9 @@ export default {
   methods: {
     menuHandle (e) {
       this.current = e ? e.key : this.default_key;
+      this.menu = siderMenu[this.id];
       const linkInfo = this.menu[this.current]
-      console.log('[home] load page:', linkInfo.pageName);
+      console.log('[sider] load page:', linkInfo.pageName);
       this.$router.push({ name: linkInfo.pageName, params: linkInfo.params})
     },
   },

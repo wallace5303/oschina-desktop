@@ -46,11 +46,6 @@ export const constantRouterMap = [
             name: 'InformationMessageIndex',
             component: () => import('@/views/information/message/Index')
           },
-          {
-            path: '/information/notice/index',
-            name: 'InformationNoticeIndex',
-            component: () => import('@/views/information/notice/Index')
-          },
         ]  
       },
       {
@@ -61,10 +56,30 @@ export const constantRouterMap = [
         redirect: { name: 'GiteeTestIndex' },
         children: [
           {
-            path: '/gitee/test/index',
-            name: 'GiteeTestIndex',
-            component: () => import('@/views/gitee/test/Index')
+            path: '/gitee/recommend/index',
+            name: 'GiteeRecommendIndex',
+            component: () => import('@/views/gitee/recommend/Index')
           },
+          {
+            path: '/gitee/repos/index',
+            name: 'GiteeReposIndex',
+            component: () => import('@/views/gitee/repos/Index')
+          },
+          {
+            path: '/gitee/activity/index',
+            name: 'GiteeActivityIndex',
+            component: () => import('@/views/gitee/activity/Index')
+          },
+          {
+            path: '/gitee/message/index',
+            name: 'GiteeMessageIndex',
+            component: () => import('@/views/gitee/message/Index')
+          },
+          {
+            path: '/gitee/my/index',
+            name: 'GiteeMyIndex',
+            component: () => import('@/views/gitee/my/Index')
+          },                                        
         ] 
       },
       {

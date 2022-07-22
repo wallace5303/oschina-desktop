@@ -1,7 +1,40 @@
 /**
- * 子菜单
+ * 菜单
  */
-export default {
+const siderMenu = {
+	'menu_1' : {
+		icon: 'home',
+		title: '资讯',
+		pageName: 'Information',
+		params: {},
+	},
+	'menu_2' : {
+		icon: 'code',
+		title: 'gitee',
+		pageName: 'Gitee',
+		params: {},
+	},
+	'menu_3' : {
+		icon: 'cloud-server',
+		title: '企业',
+		pageName: 'Enterprise',
+		params: {},
+	},
+	'menu_4' : {
+		icon: 'user',
+		title: '我的',
+		pageName: 'User',
+		params: {},
+	}, 
+	'menu_5' : {
+		icon: 'setting',
+		title: '设置',
+		pageName: 'Setting',
+		params: {},
+	}, 	
+}
+
+const subMenu = {
 	information: {
 		'menu_100' : {
 			icon: 'profile',
@@ -35,46 +68,40 @@ export default {
 		}, 
 		'menu_150' : {
 			icon: 'profile',
-			title: '私信',
+			title: '消息',
 			pageName: 'InformationMessageIndex',
 			params: {}
-		},
-		'menu_160' : {
-			icon: 'profile',
-			title: '通知',
-			pageName: 'InformationNoticeIndex',
-			params: {}
-		},				                                          
+		}				                                          
 	},
 	gitee: {
 		'menu_100' : {
 			icon: 'profile',
 			title: '推荐项目',
-			pageName: 'GiteeTestIndex',
+			pageName: 'GiteeRecommendIndex',
 			params: {}
 		},
 		'menu_110' : {
 			icon: 'profile',
 			title: '我的仓库',
-			pageName: 'GiteeTestIndex',
+			pageName: 'GiteeReposIndex',
 			params: {}
 		},
 		'menu_120' : {
 			icon: 'profile',
 			title: '动态',
-			pageName: 'GiteeTestIndex',
+			pageName: 'GiteeActivityIndex',
 			params: {}
 		},
 		'menu_130' : {
 			icon: 'profile',
 			title: '消息',
-			pageName: 'GiteeTestIndex',
+			pageName: 'GiteeMessageIndex',
 			params: {}
 		},
 		'menu_140' : {
 			icon: 'profile',
 			title: '个人中心',
-			pageName: 'GiteeTestIndex',
+			pageName: 'GiteeMyIndex',
 			params: {}
 		},
 	},
@@ -102,4 +129,9 @@ export default {
 			params: {}
 		},
 	}	
+}
+
+export {
+	siderMenu,
+	subMenu
 }
