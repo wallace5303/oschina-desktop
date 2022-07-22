@@ -2,8 +2,26 @@ import storage from 'store2'
 import request from '@/utils/request'
 
 const ipcApiRoute = {
-  test: 'controller.example.test',
-  hello: 'controller.example.hello',
+  common: {
+    test: 'controller.example.test',
+    macAddress: 'controller.common.macAddress',
+  },
+  oschina: {
+    test: 'controller.example.test',
+    getMacAddress: 'controller.public.getMacAddress',
+  },
+  gitee: {
+    test: 'controller.example.test',
+    getMacAddress: 'controller.public.getMacAddress',
+  },
+  user: {
+    test: 'controller.example.test',
+    getMacAddress: 'controller.public.getMacAddress',
+  },
+  setting: {
+    test: 'controller.example.test',
+    getMacAddress: 'controller.public.getMacAddress',
+  },
 }
 
 const specialIpcRoute = {

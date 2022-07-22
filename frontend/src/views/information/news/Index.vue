@@ -114,6 +114,8 @@ for (let i = 0; i < 2; i++) {
 export default {
   data() {
     return {
+      token: '',
+      macAddr: '',
       listData,
       pagination: {
         onChange: page => {
@@ -128,15 +130,17 @@ export default {
       ],
     };
   },
+  mounted () {
+    this.init();
+  },
   methods: {
-    exec (id) {
-      const params = {
-        id: id
-      }
-      this.$ipcInvoke(ipcApiRoute.test, params).then(res => {
+    init () {
+      // 获取机器码
+      this.$ipcInvoke(ipcApiRoute.common.macAddress, {}).then(res => {
         console.log('res:', res)
+        this.macAddr = res;
       }) 
-    },  
+    },
   }
 };
 </script>

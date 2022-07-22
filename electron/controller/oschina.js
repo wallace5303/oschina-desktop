@@ -7,10 +7,10 @@ const electronApp = require('electron').app;
 const { BrowserWindow } = require('electron');
 
 /**
- * 资讯控制器
+ * oschina控制器
  * @class
  */
-class InformationController extends Controller {
+class OschinaController extends Controller {
 
   constructor(ctx) {
     super(ctx);
@@ -38,4 +38,4 @@ class InformationController extends Controller {
   }   
 }
 
-module.exports = InformationController;
+module.exports = OschinaController;
