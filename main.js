@@ -19,7 +19,11 @@ class Main extends Appliaction {
    * electron app ready
    */
   async electronAppReady () {
-    // do some things
+    // 改变窗口大小
+    this.config.windowsOption.width = 400;
+    this.config.windowsOption.height = 300;
+    this.config.windowsOption.minWidth = 400;
+    this.config.windowsOption.minHeight = 300;
   }
 
   /**

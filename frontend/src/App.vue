@@ -9,12 +9,16 @@ export default {
   name: 'App',
   components: {},
   data() {
-    return {};
+    return {
+      auth_token: ''
+    };
   },
   watch: {},
+  mounted () {},
   methods: {}
 }
 </script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

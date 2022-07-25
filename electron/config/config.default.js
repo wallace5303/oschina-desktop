@@ -124,7 +124,7 @@ module.exports = (appInfo) => {
 
   /* 被浏览器唤醒 (可选) */
   config.awakeProtocol = {
-    protocol: 'ee', // 自定义协议名（默认你的应用名称-英文）
+    protocol: 'oschina', // 自定义协议名（默认你的应用名称-英文）
     args: []
   };
 

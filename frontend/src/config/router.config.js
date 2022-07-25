@@ -4,9 +4,14 @@
  */
 import {AppSider, Menu} from '@/layouts'
 
+const RouteView = {
+  name: 'RouteView',
+  render: h => h('router-view')
+}
+
 export const constantRouterMap = [
   {
-    path: '/',
+    path: '/page',
     component: AppSider,
     children: [
       {
@@ -125,5 +130,17 @@ export const constantRouterMap = [
         ] 
       }
     ]
-  }
+  },
+  {
+    path: '/',
+    component: RouteView,
+    redirect: { name: 'Auth' },
+    children: [
+      {
+        path: '/auth',
+        name: 'Auth',
+        component: () => import('@/views/login/auth/Index')
+      }
+    ]
+  },  
 ]
