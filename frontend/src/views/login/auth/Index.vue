@@ -1,15 +1,18 @@
 <template>
   <div id="app-auth">
     <div class="block-1">
-      <a-button type="primary">
-        <a :href="loginUrl" target="_blank">授权登录</a>
-      </a-button>
+      <a :href="authUrl" target="_blank" @click="getToken">
+        <a-button type="primary">
+          授权登录
+        </a-button>
+      </a>
     </div>  
   </div>
 </template>
 <script>
-import storage from 'store2'
+// import storage from 'store2'
 import _ from 'lodash'
+import { ipcApiRoute } from '@/api/main'
 
 export default {
   data() {
@@ -18,19 +21,33 @@ export default {
         "app_id": "oschina_desktop",
         "mac_addr": "",
       },
-      authUrl: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state=@state&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify',
-      getToken: '',
+      authUrl: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state=$0&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify',
     };
   },
   mounted () {
-    this.checkToken()
+    this.init()
   },
   methods: {
-    checkToken () {
-      const auth_token = storage.get('auth_token');
-      if (!_.isEmpty(auth_token)) {
-        //this.$router.push({ name: 'Auth', params: {}})
-      }
+    init () {
+      //deal url
+      this.$ipcInvoke(ipcApiRoute.common.macAddress, {}).then(mac => {
+        this.state.mac_addr = mac;
+        let str = JSON.stringify(this.state);
+        this.authUrl = this.authUrl.replace('$0', str);
+      })
+
+      // const auth_token = storage.get('auth_token');
+      // if (!_.isEmpty(auth_token)) {
+      //   this.$router.push({ name: 'Auth', params: {}})
+      // }
+    },
+    getToken () {
+      const that = this;
+      setInterval(function(){
+        that.$ipcInvoke(ipcApiRoute.oschina.getAuthToken, {}).then(res => {
+          console.log('getAuthToken res:', res)
+        })
+      }, 500)
     }
   }
 };
