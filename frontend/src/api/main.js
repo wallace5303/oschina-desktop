@@ -8,6 +8,7 @@ const ipcApiRoute = {
   oschina: {
     authInfo: 'controller.oschina.authInfo',
     getAuthToken: 'controller.oschina.getAuthToken',
+    getNews: 'controller.oschina.getNews',
   },
   gitee: {
     test: 'controller.example.test',

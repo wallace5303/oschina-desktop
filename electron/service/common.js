@@ -1,8 +1,6 @@
 'use strict';
 
 const Service = require('ee-core').Service;
-const electronApp = require('electron').app;
-const { dialog } = require('electron');
 
 /**
  * 通用

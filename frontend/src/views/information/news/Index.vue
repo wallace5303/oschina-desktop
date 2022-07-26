@@ -114,8 +114,11 @@ for (let i = 0; i < 2; i++) {
 export default {
   data() {
     return {
-      token: '',
-      macAddr: '',
+      currentPage: 1,
+      perPage: 20,
+      itemList: [],
+      total: -1,
+      loading: false,
       listData,
       pagination: {
         onChange: page => {
@@ -131,15 +134,14 @@ export default {
     };
   },
   mounted () {
-    this.init();
+    this.getNews();
   },
   methods: {
-    init () {
-      // 获取机器码
-      // this.$ipcInvoke(ipcApiRoute.common.macAddress, {}).then(res => {
-      //   console.log('res:', res)
-      //   this.macAddr = res;
-      // }) 
+    getNews () {
+      this.$ipcInvoke(ipcApiRoute.oschina.getNews, {}).then(res => {
+        console.log('res:', res)
+        
+      }) 
     },
   }
 };

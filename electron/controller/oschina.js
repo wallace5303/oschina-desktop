@@ -57,7 +57,20 @@ class OschinaController extends Controller {
     }
 
     return tokenRes.data;
-  }   
+  }
+
+  /**
+   * news
+   */ 
+  async news (args, event) {
+    
+    const tokenRes = await this.app.curl(authTokenUrl, options);
+    if (tokenRes.status != 200) {
+      this.app.logger.error('[Controller] [Oschina] [getAuthToken] tokenRes:', tokenRes);
+    }
+
+    return tokenRes.data;
+  } 
 }
 
 module.exports = OschinaController;

@@ -59,14 +59,14 @@ export default {
         times++;
       }, 1000)
       setTimeout(function(){
+        this.$message.error(`服务器超时异常`);
         clearInterval(myTimer);
-      }, 10000)
+      }, 15000)
     },
     redectHome () {
       this.loading = true;
       this.$ipcInvoke(ipcApiRoute.common.changeWindowSize, {}).then(res => {
-        //this.loading = false;
-        //this.$router.push({ name: 'Information', params: {}});
+        this.$router.push({ name: 'Information', params: {}});
       })
     }
   }
