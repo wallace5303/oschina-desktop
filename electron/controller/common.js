@@ -1,6 +1,5 @@
 'use strict';
 
-const pcMac = require('getmac');
 const Controller = require('ee-core').Controller;
 
 /**
@@ -13,14 +12,6 @@ class CommonController extends Controller {
     super(ctx);
   }
 
-  /**
-   * 获取Mac地址
-   */
-  async macAddress () {
-    const macAddr = pcMac.default();
-
-    return macAddr;
-  }
 }
 
 module.exports = CommonController;

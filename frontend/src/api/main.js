@@ -7,8 +7,8 @@ const ipcApiRoute = {
     macAddress: 'controller.common.macAddress',
   },
   oschina: {
+    authInfo: 'controller.oschina.authInfo',
     getAuthToken: 'controller.oschina.getAuthToken',
-    getMacAddress: 'controller.public.getMacAddress',
   },
   gitee: {
     test: 'controller.example.test',

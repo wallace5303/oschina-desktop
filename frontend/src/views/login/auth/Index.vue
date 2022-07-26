@@ -10,18 +10,20 @@
   </div>
 </template>
 <script>
-// import storage from 'store2'
+import storage from 'store2'
 import _ from 'lodash'
 import { ipcApiRoute } from '@/api/main'
 
 export default {
   data() {
     return {
+      loading: false, 
+      authUrl: '',
       state: {
         "app_id": "oschina_desktop",
         "mac_addr": "",
       },
-      authUrl: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state=$0&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify',
+      authUrl11: 'https://www.oschina.net/action/oauth2/authorize?response_type=code&client_id=KUM768r2I1qA00RUUAyp&state=$0&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify',
     };
   },
   mounted () {
@@ -29,12 +31,21 @@ export default {
   },
   methods: {
     init () {
-      //deal url
-      this.$ipcInvoke(ipcApiRoute.common.macAddress, {}).then(mac => {
-        this.state.mac_addr = mac;
-        let str = JSON.stringify(this.state);
-        this.authUrl = this.authUrl.replace('$0', str);
+      const auth_token = storage.get('auth_token');
+      if (!_.isEmpty(auth_token)) {
+        //this.$router.push({ name: 'Information', params: {}})
+        //return;
+      }
+
+      this.$ipcInvoke(ipcApiRoute.oschina.authInfo, {}).then(res => {
+        console.log('authInfo:', res)
+        this.authUrl = res.authUrl;
       })
+      // this.$ipcInvoke(ipcApiRoute.common.macAddress, {}).then(mac => {
+      //   this.state.mac_addr = mac;
+      //   let str = JSON.stringify(this.state);
+      //   this.authUrl = this.authUrl.replace('$0', str);
+      // })
 
       // const auth_token = storage.get('auth_token');
       // if (!_.isEmpty(auth_token)) {
@@ -42,12 +53,17 @@ export default {
       // }
     },
     getToken () {
-      const that = this;
-      setInterval(function(){
-        that.$ipcInvoke(ipcApiRoute.oschina.getAuthToken, {}).then(res => {
-          console.log('getAuthToken res:', res)
-        })
-      }, 500)
+      // const that = this;
+      // setInterval(function(){
+      //   that.$ipcInvoke(ipcApiRoute.oschina.getAuthToken, {}).then(data => {
+      //     console.log('getAuthToken data:', data)
+      //     if (!_.isEmpty(data.access_token)) {
+      //       storage.set('auth_token', data.access_token);
+      //       that.$router.push({ name: 'Information', params: {}})
+      //       return;
+      //     }
+      //   })
+      // }, 1000)
     }
   }
 };
