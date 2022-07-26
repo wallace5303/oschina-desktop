@@ -16,12 +16,12 @@ class OscService extends Service {
   /*
    * 访问远程api
    */
-  async api(uri, params, method = 'POST') {
+  async api(shortUri, params, method = 'POST') {
     const res = {
       code: 1000,
       message: 'unknown error',
     };
-    url = constant.oscApi[uri];
+    let url = constant.oscUrl + constant.oscApi[shortUri];
 
     try {
       //throw new Error('Sync Error');
@@ -32,13 +32,19 @@ class OscService extends Service {
         dataType: 'json',
         timeout: 10000,
       });
+      console.log('response:', response);
+      if (response.status != 200) {
+        this.app.logger.error('[OschinaController] [getNews] res:', response);
+      }
       const result = response.data;
       // this.app.logger.info('[OutapiService] [api]: result:%j', result);
-      if (result.code != 0) {
-        this.app.logger.error('[OscService] [api]: res error result:%j', result);
-      }
+      // if (result.code != 0) {
+      //   this.app.logger.error('[OscService] [api]: res error result:%j', result);
+      // }
       return result;
     } catch (e) {
+      console.log('e:', e);
+      res.message = e.message;
       this.app.logger.error('[OscService] [api]:  ERROR ', e);
     }
 

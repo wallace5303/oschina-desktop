@@ -19,7 +19,7 @@ class OschinaController extends Controller {
   async authInfo () {
     const macAddr = await this.service.common.getMacAddress();
     let state = {
-      app_id: constant.app_info.app_id,
+      app_id: constant.appInfo.appId,
       mac_addr: macAddr,
     }
 
@@ -45,7 +45,7 @@ class OschinaController extends Controller {
     const options = {
       method: 'POST',
       data: {
-        app_id: constant.app_info.app_id,
+        app_id: constant.appInfo.appId,
         mac_addr: macAddr,
       },
       dataType: 'json',
@@ -62,14 +62,12 @@ class OschinaController extends Controller {
   /**
    * news
    */ 
-  async news (args, event) {
-    
-    const tokenRes = await this.app.curl(authTokenUrl, options);
-    if (tokenRes.status != 200) {
-      this.app.logger.error('[Controller] [Oschina] [getAuthToken] tokenRes:', tokenRes);
-    }
-
-    return tokenRes.data;
+  async getNews (args, event) {
+    const params = args;
+    console.log('params:', params);
+    const res = await this.service.osc.api('news_list', params);
+    console.log('res:', res);
+    return res;
   } 
 }
 

@@ -96,6 +96,7 @@
   </div>
 </template>
 <script>
+import storage from 'store2'
 import { ipcApiRoute } from '@/api/main'
 
 const listData = [];
@@ -114,6 +115,7 @@ for (let i = 0; i < 2; i++) {
 export default {
   data() {
     return {
+      auth_token: '',
       currentPage: 1,
       perPage: 20,
       itemList: [],
@@ -134,13 +136,25 @@ export default {
     };
   },
   mounted () {
+    this.init();
     this.getNews();
   },
   methods: {
+    init () {
+      this.auth_token = storage.get('auth_token');
+    },
     getNews () {
-      this.$ipcInvoke(ipcApiRoute.oschina.getNews, {}).then(res => {
-        console.log('res:', res)
-        
+      const params = {
+        access_token: this.auth_token,
+        catalog: 1,
+        page: 1,
+        pageSize: 20,
+        dataType: 'json'
+      }
+      this.$ipcInvoke(ipcApiRoute.oschina.getNews, params).then(res => {
+        console.log('res:', this.res)
+        this.itemList = res.newslist;
+        console.log('itemList:', this.itemList)
       }) 
     },
   }
