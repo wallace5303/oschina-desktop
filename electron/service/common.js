@@ -21,7 +21,7 @@ class CommonService extends Service {
     if (!origin) {
       macAddr = macAddr.replace(/:/g, '');
     }
-    console.log('macAddr:', macAddr);
+
     return macAddr;
   }
 }

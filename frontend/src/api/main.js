@@ -4,7 +4,6 @@ import request from '@/utils/request'
 const ipcApiRoute = {
   common: {
     test: 'controller.example.test',
-    macAddress: 'controller.common.macAddress',
   },
   oschina: {
     authInfo: 'controller.oschina.authInfo',
@@ -12,15 +11,12 @@ const ipcApiRoute = {
   },
   gitee: {
     test: 'controller.example.test',
-    getMacAddress: 'controller.public.getMacAddress',
   },
   user: {
     test: 'controller.example.test',
-    getMacAddress: 'controller.public.getMacAddress',
   },
   setting: {
     test: 'controller.example.test',
-    getMacAddress: 'controller.public.getMacAddress',
   },
 }
 

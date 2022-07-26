@@ -1,8 +1,6 @@
 'use strict';
 
 const Controller = require('ee-core').Controller;
-const url = require('url');
-const querystring = require('querystring');
 
 /**
  * oschina控制器
@@ -30,24 +28,11 @@ class OschinaController extends Controller {
     authUrl += '&state=' + JSON.stringify(state);
     authUrl += '&redirect_uri=https%3A%2F%2Fwww.kaka996.com%2Fapi%2Foschina%2Fverify';
 
-    // authUrl = url.format({
-    //   protocol: 'https',
-    //   hostname: 'www.oschina.net',
-    //   pathname: '/action/oauth2/authorize',
-    //   query: {
-    //     response_type: 'code',
-    //     client_id: 'KUM768r2I1qA00RUUAyp',
-    //     state: JSON.stringify(state),
-    //     redirect_uri: 'https://www.kaka996.com/api/oschina/verify'
-    //   }
-    // });
-
-    const result = {
+    const data = {
       authUrl: authUrl,
       macAddr: macAddr
     }
-    console.log('authUrl:', authUrl);
-    return result;
+    return data;
   }
 
   /**
