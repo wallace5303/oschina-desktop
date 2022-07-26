@@ -1,11 +1,12 @@
 <template>
   <div id="app-auth">
     <div class="block-1">
-      <a :href="authUrl" target="_blank" @click="getToken">
+      <a v-if="!loading" :href="authUrl" target="_blank" @click="getToken">
         <a-button type="primary">
           授权登录
         </a-button>
       </a>
+      <span v-else>{{ loginText }}</span>
     </div>  
   </div>
 </template>
@@ -19,6 +20,7 @@ export default {
     return {
       loading: false, 
       authUrl: '',
+      loginText: '正在登陆......'
     };
   },
   mounted () {
@@ -28,8 +30,8 @@ export default {
     init () {
       const auth_token = storage.get('auth_token');
       if (!_.isEmpty(auth_token)) {
-        //this.$router.push({ name: 'Information', params: {}})
-        //return;
+        this.redectHome();
+        return;
       }
 
       this.$ipcInvoke(ipcApiRoute.oschina.authInfo, {}).then(res => {
@@ -38,17 +40,34 @@ export default {
       })
     },
     getToken () {
-      // const that = this;
-      // setInterval(function(){
-      //   that.$ipcInvoke(ipcApiRoute.oschina.getAuthToken, {}).then(data => {
-      //     console.log('getAuthToken data:', data)
-      //     if (!_.isEmpty(data.access_token)) {
-      //       storage.set('auth_token', data.access_token);
-      //       that.$router.push({ name: 'Information', params: {}})
-      //       return;
-      //     }
-      //   })
-      // }, 1000)
+      const that = this;
+      let myTimer;
+      let times = 1;
+      myTimer = setInterval(function(){
+        console.log('retry number:', times);
+        that.$ipcInvoke(ipcApiRoute.oschina.getAuthToken, {}).then(res => {
+          console.log('getAuthToken res:', res)
+          if (res.code == 0) {
+            clearInterval(myTimer);
+            const token_info = res.data.token_info;
+            storage.set('auth_token', token_info.access_token);
+            storage.set('token_info', token_info);
+            that.redectHome();
+            return;
+          }
+        })
+        times++;
+      }, 1000)
+      setTimeout(function(){
+        clearInterval(myTimer);
+      }, 10000)
+    },
+    redectHome () {
+      this.loading = true;
+      this.$ipcInvoke(ipcApiRoute.common.changeWindowSize, {}).then(res => {
+        //this.loading = false;
+        //this.$router.push({ name: 'Information', params: {}});
+      })
     }
   }
 };

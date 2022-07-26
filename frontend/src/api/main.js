@@ -3,7 +3,7 @@ import request from '@/utils/request'
 
 const ipcApiRoute = {
   common: {
-    test: 'controller.example.test',
+    changeWindowSize: 'controller.common.changeWindowSize',
   },
   oschina: {
     authInfo: 'controller.oschina.authInfo',

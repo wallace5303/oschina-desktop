@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('ee-core').Controller;
+const constant = require('../enums/constant');
 
 /**
  * oschina控制器
@@ -18,7 +19,7 @@ class OschinaController extends Controller {
   async authInfo () {
     const macAddr = await this.service.common.getMacAddress();
     let state = {
-      app_id: "oschina_desktop",
+      app_id: constant.app_info.app_id,
       mac_addr: macAddr,
     }
 
@@ -38,13 +39,24 @@ class OschinaController extends Controller {
   /**
    * 授权信息
    */ 
-  getAuthToken () {
-    const macAddr = pcMac.default();
-    const params = {
-      mac_addr: macAddr,
+  async getAuthToken () {
+    const macAddr = await this.service.common.getMacAddress();
+    const authTokenUrl = 'https://www.kaka996.com/api/oschina/getToken';
+    const options = {
+      method: 'POST',
+      data: {
+        app_id: constant.app_info.app_id,
+        mac_addr: macAddr,
+      },
+      dataType: 'json',
+      timeout: 5000,  
+    };
+    const tokenRes = await this.app.curl(authTokenUrl, options);
+    if (tokenRes.status != 200) {
+      this.app.logger.error('[Controller] [Oschina] [getAuthToken] tokenRes:', tokenRes);
     }
-    const authTokenUrl = '' 
 
+    return tokenRes.data;
   }   
 }
 

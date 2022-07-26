@@ -11,7 +11,23 @@ class CommonController extends Controller {
   constructor(ctx) {
     super(ctx);
   }
-
+  
+  /**
+   * 改变窗体大小
+   */
+   async changeWindowSize (args, event) {
+    const mainWindow = this.app.electron.mainWindow;
+    const size = {
+      width: args?.width ?? 1280,
+      height: args?.width ?? 960
+    }
+    mainWindow.setSize(size.width, size.height);
+    mainWindow.setResizable(true);
+    mainWindow.center();
+    mainWindow.show();
+    
+    return true;
+  }
 }
 
 module.exports = CommonController;

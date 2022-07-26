@@ -136,10 +136,10 @@ export default {
   methods: {
     init () {
       // 获取机器码
-      this.$ipcInvoke(ipcApiRoute.common.macAddress, {}).then(res => {
-        console.log('res:', res)
-        this.macAddr = res;
-      }) 
+      // this.$ipcInvoke(ipcApiRoute.common.macAddress, {}).then(res => {
+      //   console.log('res:', res)
+      //   this.macAddr = res;
+      // }) 
     },
   }
 };
