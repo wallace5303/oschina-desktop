@@ -66,7 +66,6 @@ class OschinaController extends Controller {
     const params = args;
     console.log('params:', params);
     const res = await this.service.osc.api('news_list', params);
-    console.log('res:', res);
     return res;
   } 
 }

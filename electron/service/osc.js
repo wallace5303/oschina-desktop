@@ -32,18 +32,15 @@ class OscService extends Service {
         dataType: 'json',
         timeout: 10000,
       });
-      console.log('response:', response);
+      //console.log('response:', response);
       if (response.status != 200) {
         this.app.logger.error('[OschinaController] [getNews] res:', response);
       }
       const result = response.data;
-      // this.app.logger.info('[OutapiService] [api]: result:%j', result);
-      // if (result.code != 0) {
-      //   this.app.logger.error('[OscService] [api]: res error result:%j', result);
-      // }
       return result;
     } catch (e) {
-      console.log('e:', e);
+      console.log('e.code:', e.code);
+      console.log('e.message:', e.message);
       res.message = e.message;
       this.app.logger.error('[OscService] [api]:  ERROR ', e);
     }

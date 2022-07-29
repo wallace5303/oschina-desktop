@@ -1,90 +1,32 @@
 <template>
   <div id="app-base-test-api">
     <div class="one-block-1">
-      <a-tabs default-active-key="1">
-        <a-tab-pane key="1">
+      <a-tabs default-active-key="1" @change="changeTab">
+        <a-tab-pane v-for="{id, name} in tabs" :key="id" >
           <span slot="tab">
             <!-- <a-icon type="apple" /> -->
-            最新资讯
+            {{ name }}
           </span>
           <div class="one-block-3">
-            <a-list item-layout="vertical" size="large" :data-source="listData">
-              <a-list-item slot="renderItem" key="item.title" slot-scope="item, index">
-                <template v-for="{ type, text } in actions" slot="actions">
+            <a-list item-layout="vertical" size="large" :data-source="itemList">
+              <a-list-item slot="renderItem" key="item.title" slot-scope="item">
+                <template v-for="{ type } in actions" slot="actions">
                   <span :key="type">
                     <a-icon :type="type" style="margin-right: 8px" />
-                    {{ text }}
+                    {{ dealActions(type, item) }}
                   </span>
                 </template>
-                <img
+                <!-- <img
                   slot="extra"
                   width="272"
                   alt="logo"
                   src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                />
-                <a-list-item-meta :description="item.description">
-                  <a slot="title" :href="item.href">{{ item.title }}</a>
-                  <a-avatar slot="avatar" :src="item.avatar" />
+                /> -->
+                <a-list-item-meta>
+                  <a slot="title" href="#">{{ item.title }}</a>
+                  <!-- <a-avatar slot="avatar" :src="item.avatar" /> -->
                 </a-list-item-meta>
-                {{ item.content }}
-              </a-list-item>
-            </a-list>
-          </div>
-        </a-tab-pane>
-        <a-tab-pane key="2">
-          <span slot="tab">
-            <!-- <a-icon type="android" /> -->
-            综合资讯
-          </span>
-          <div class="one-block-3">
-            <a-list item-layout="vertical" size="large" :data-source="listData">
-              <a-list-item slot="renderItem" key="item.title" slot-scope="item, index">
-                <template v-for="{ type, text } in actions" slot="actions">
-                  <span :key="type">
-                    <a-icon :type="type" style="margin-right: 8px" />
-                    {{ text }}
-                  </span>
-                </template>
-                <img
-                  slot="extra"
-                  width="272"
-                  alt="logo"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                />
-                <a-list-item-meta :description="item.description">
-                  <a slot="title" :href="item.href">{{ item.title }}</a>
-                  <a-avatar slot="avatar" :src="item.avatar" />
-                </a-list-item-meta>
-                {{ item.content }}
-              </a-list-item>
-            </a-list>
-          </div>
-        </a-tab-pane>
-        <a-tab-pane key="3">
-          <span slot="tab">
-            <!-- <a-icon type="android" /> -->
-            软件更新
-          </span>
-          <div class="one-block-3">
-            <a-list item-layout="vertical" size="large" :data-source="listData">
-              <a-list-item slot="renderItem" key="item.title" slot-scope="item, index">
-                <template v-for="{ type, text } in actions" slot="actions">
-                  <span :key="type">
-                    <a-icon :type="type" style="margin-right: 8px" />
-                    {{ text }}
-                  </span>
-                </template>
-                <img
-                  slot="extra"
-                  width="272"
-                  alt="logo"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                />
-                <a-list-item-meta :description="item.description">
-                  <a slot="title" :href="item.href">{{ item.title }}</a>
-                  <a-avatar slot="avatar" :src="item.avatar" />
-                </a-list-item-meta>
-                {{ item.content }}
+                的点点滴滴
               </a-list-item>
             </a-list>
           </div>
@@ -99,39 +41,46 @@
 import storage from 'store2'
 import { ipcApiRoute } from '@/api/main'
 
-const listData = [];
-for (let i = 0; i < 2; i++) {
-  listData.push({
-    href: 'https://www.antdv.com/',
-    title: `ant design vue part ${i}`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
-
 export default {
   data() {
     return {
       auth_token: '',
       currentPage: 1,
-      perPage: 20,
+      perPage: 5,
       itemList: [],
+      catalogText:{
+        1: '综合新闻',
+        2: '软件更新',
+        3: '所有'
+      },
+      newsCount: 0,
+      newsTypeText: {
+        0: '链接新闻',
+        1: '软件推荐',
+        2: '讨论区帖子',
+        3: '博客',
+        4: '普通新闻',
+        7: '翻译文章',
+      },
       total: -1,
       loading: false,
-      listData,
       pagination: {
         onChange: page => {
           console.log(page);
         },
         pageSize: 3,
       },
+      tabs: [
+        { id: '1', name: '综合新闻'},
+        { id: '2', name: '软件更新'},
+        { id: '3', name: '最新资讯'},
+      ],
+      currentTabKey: '1',
       actions: [
-        { type: 'star-o', text: '156' },
-        { type: 'like-o', text: '156' },
-        { type: 'message', text: '2' },
+        { type: 'user', text: '' },
+        { type: 'tag', text: '' },
+        { type: 'message', text: '' },
+        { type: 'calendar', text: '' },
       ],
     };
   },
@@ -146,16 +95,35 @@ export default {
     getNews () {
       const params = {
         access_token: this.auth_token,
-        catalog: 1,
-        page: 1,
-        pageSize: 20,
+        catalog: this.currentTabKey,
+        page: this.currentPage,
+        pageSize: this.pageSize,
         dataType: 'json'
       }
       this.$ipcInvoke(ipcApiRoute.oschina.getNews, params).then(res => {
-        console.log('res:', this.res)
+        //console.log('res:', this.res)
         this.itemList = res.newslist;
         console.log('itemList:', this.itemList)
       }) 
+    },
+    changeTab (key) {
+      this.currentTabKey = key;
+      this.getNews();
+    },
+    dealActions (type, item) {
+      let text = '';
+      //console.log(item.full_name);
+      if (type == 'user') {
+        text = item.author;
+      } else if (type == 'tag') {
+        text = this.newsTypeText[item.type] || '其它';
+      } else if (type == 'message') {
+        text = item.commentCount;
+      } else if (type == 'calendar') {
+        text = item.pubDate;
+      }
+
+      return text;
     },
   }
 };
