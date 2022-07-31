@@ -65,7 +65,12 @@ class OschinaController extends Controller {
   async getNews (args, event) {
     const params = args;
     console.log('params:', params);
-    const res = await this.service.osc.api('news_list', params);
+    // const res = await this.service.osc.api('news_list', params);
+    // console.log(JSON.stringify(res.newslist));
+    let tmp = '[{"author":"dd","id":204764,"title":"LLVM 16 ","type":4,"authorid":2720166,"pubDate":"2022-07-31 08:49:35","commentCount":0},{"author":"Alias_Travis","id":204763,"title":"测试","type":0,"authorid":4937141,"pubDate":"2022-07-31 08:16:16","url":"https://www.oschina.net/project/awesome?columnId=19","object":0,"commentCount":0},{"author":"Alias_Travis","id":204762,"title":".NET Core 3.1","type":4,"authorid":4937141,"pubDate":"2022-07-31 08:10:36","commentCount":2},{"author":"下想","id":204761,"title":"adasfda垯","type":2,"authorid":2720166,"pubDate":"2022-07-31 08:00:32","commentCount":5,"object":2326412},{"author":"卡卡","id":204760,"title":"LinkedDataHub 啦啦啦啦","type":1,"authorid":2720166,"pubDate":"2022-07-31 07:50:03","object":64563,"commentCount":0}]';
+    let res = {
+      newslist: JSON.parse(tmp)
+    };
     return res;
   } 
 }

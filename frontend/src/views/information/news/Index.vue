@@ -4,7 +4,6 @@
       <a-tabs default-active-key="1" @change="changeTab">
         <a-tab-pane v-for="{id, name} in tabs" :key="id" >
           <span slot="tab">
-            <!-- <a-icon type="apple" /> -->
             {{ name }}
           </span>
           <div class="one-block-3">
@@ -16,17 +15,9 @@
                     {{ dealActions(type, item) }}
                   </span>
                 </template>
-                <!-- <img
-                  slot="extra"
-                  width="272"
-                  alt="logo"
-                  src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
-                /> -->
                 <a-list-item-meta>
-                  <a slot="title" href="#">{{ item.title }}</a>
-                  <!-- <a-avatar slot="avatar" :src="item.avatar" /> -->
+                  <a slot="title" href="#" class="newsTitle">{{ item.title }}</a>
                 </a-list-item-meta>
-                的点点滴滴
               </a-list-item>
             </a-list>
           </div>
@@ -97,7 +88,7 @@ export default {
         access_token: this.auth_token,
         catalog: this.currentTabKey,
         page: this.currentPage,
-        pageSize: this.pageSize,
+        pageSize: this.perPage,
         dataType: 'json'
       }
       this.$ipcInvoke(ipcApiRoute.oschina.getNews, params).then(res => {
@@ -108,6 +99,8 @@ export default {
     },
     changeTab (key) {
       this.currentTabKey = key;
+      this.currentPage = 1;
+      console.log('currentTabKey:', this.currentTabKey)
       this.getNews();
     },
     dealActions (type, item) {
@@ -142,6 +135,10 @@ export default {
   }
   .one-block-3 {
     //padding-top: 10px;
+    .newsTitle {
+      font-size: 18px;
+      color: #3975C6;
+    }
   }
 }
 </style>
