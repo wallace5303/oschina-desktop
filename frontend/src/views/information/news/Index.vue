@@ -1,5 +1,5 @@
 <template>
-  <div id="app-base-test-api">
+  <div id="information-news-index">
     <div class="one-block-1">
       <a-tabs default-active-key="1" @change="changeTab">
         <a-tab-pane v-for="{id, name} in tabs" :key="id" >
@@ -16,7 +16,7 @@
                   </span>
                 </template>
                 <a-list-item-meta>
-                  <a slot="title" href="#" class="newsTitle">{{ item.title }}</a>
+                  <a slot="title" href="#" class="newsTitle" @click="showDetail">{{ item.title }}</a>
                 </a-list-item-meta>
               </a-list-item>
             </a-list>
@@ -25,6 +25,15 @@
       </a-tabs>
     </div>  
     <div class="one-block-2">
+      <a-drawer
+        title="Create a new account"
+        width="100%"
+        :visible="detailVisible"
+        :body-style="{ paddingBottom: '80px' }"
+        @close="onDetailClose"
+      >
+        ddddd
+      </a-drawer>
     </div>
   </div>
 </template>
@@ -53,14 +62,8 @@ export default {
         4: '普通新闻',
         7: '翻译文章',
       },
-      total: -1,
+      detailVisible: false,
       loading: false,
-      pagination: {
-        onChange: page => {
-          console.log(page);
-        },
-        pageSize: 3,
-      },
       tabs: [
         { id: '1', name: '综合新闻'},
         { id: '2', name: '软件更新'},
@@ -118,11 +121,18 @@ export default {
 
       return text;
     },
+    showDetail() {
+      this.detailVisible = true;
+    },
+    onDetailClose () {
+      console.log('sssss');
+      this.detailVisible = false;
+    } 
   }
 };
 </script>
 <style lang="less" scoped>
-#app-base-test-api {
+#information-news-index {
   padding: 0px 30px;
   text-align: left;
   width: 100%;
