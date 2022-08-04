@@ -16,7 +16,7 @@
                   </span>
                 </template>
                 <a-list-item-meta>
-                  <a slot="title" href="#" class="newsTitle" @click="showDetail">{{ item.title }}</a>
+                  <a slot="title" href="#" class="news-title" @click="showDetail(item.id)">{{ item.title }}</a>
                 </a-list-item-meta>
               </a-list-item>
             </a-list>
@@ -26,19 +26,24 @@
     </div>  
     <div class="one-block-2">
       <a-drawer
-        title="Create a new account"
+        :title="newsTitle"
         width="100%"
         :visible="detailVisible"
         :body-style="{ paddingBottom: '80px' }"
         @close="onDetailClose"
       >
-        ddddd
+        <a-space>
+          <span>作者：{{ newsContent.author }}</span>
+          <span>{{ newsContent.pubDate }}</span>
+          <span><a-icon type="message" /> {{ newsContent.commentCount }}</span>
+        </a-space>
       </a-drawer>
     </div>
   </div>
 </template>
 <script>
 import storage from 'store2'
+import _ from 'lodash'
 import { ipcApiRoute } from '@/api/main'
 
 export default {
@@ -76,6 +81,8 @@ export default {
         { type: 'message', text: '' },
         { type: 'calendar', text: '' },
       ],
+      newsTitle: '',
+      newsContent: ''
     };
   },
   mounted () {
@@ -84,7 +91,8 @@ export default {
   },
   methods: {
     init () {
-      this.auth_token = storage.get('auth_token');
+      const token_info = storage.get('token_info');
+      this.auth_token = token_info.auth_token;
     },
     getNews () {
       const params = {
@@ -98,6 +106,21 @@ export default {
         //console.log('res:', this.res)
         this.itemList = res.newslist;
         console.log('itemList:', this.itemList)
+      }) 
+    },
+    getNewsDetail (id) {
+      const params = {
+        access_token: this.auth_token,
+        id,
+        dataType: 'json'
+      }
+      this.$ipcInvoke(ipcApiRoute.oschina.getNewsDetail, params).then(res => {
+        console.log('res:', this.res)
+        if (_.isEmpty(this.res)) {
+          this.$message.error('数据不存在');
+        }
+        this.newsContent = res;
+        this.newsTitle = res.title;
       }) 
     },
     changeTab (key) {
@@ -123,6 +146,7 @@ export default {
     },
     showDetail() {
       this.detailVisible = true;
+      this.getNewsDetail();
     },
     onDetailClose () {
       console.log('sssss');
@@ -145,9 +169,9 @@ export default {
   }
   .one-block-3 {
     //padding-top: 10px;
-    .newsTitle {
-      font-size: 18px;
-      color: #3975C6;
+    .news-title {
+      font-size: 16px;
+      color: #000;
     }
   }
 }

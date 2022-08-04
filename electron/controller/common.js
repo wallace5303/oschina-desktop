@@ -18,8 +18,8 @@ class CommonController extends Controller {
    async changeWindowSize (args, event) {
     const mainWindow = this.app.electron.mainWindow;
     const size = {
-      width: args?.width ?? 1280,
-      height: args?.width ?? 960
+      width: args?.width ?? 1080,
+      height: args?.width ?? 720
     }
     mainWindow.setSize(size.width, size.height);
     mainWindow.setResizable(true);

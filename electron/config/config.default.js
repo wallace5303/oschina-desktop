@@ -43,7 +43,6 @@ module.exports = (appInfo) => {
 
   /**
    * 主窗口
-   * show {boolean} true:立即显示窗口，短暂白屏；false:延迟显示窗口，无白屏
    */
   config.windowsOption = {
     width: 980,
@@ -51,7 +50,7 @@ module.exports = (appInfo) => {
     minWidth: 800,
     minHeight: 650,
     webPreferences: {
-      //webSecurity: false,
+      webSecurity: false,
       contextIsolation: false, // 设置此项为false后，才可在渲染进程中使用electron api
       nodeIntegration: true,
     },

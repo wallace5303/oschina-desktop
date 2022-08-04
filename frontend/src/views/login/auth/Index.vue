@@ -28,18 +28,37 @@ export default {
   },
   methods: {
     init () {
-      const auth_token = storage.get('auth_token');
-      if (!_.isEmpty(auth_token)) {
+      if (this.checkToken()) {
         this.redectHome();
         return;
       }
-
       this.$ipcInvoke(ipcApiRoute.oschina.authInfo, {}).then(res => {
         console.log('authInfo:', res)
         this.authUrl = res.authUrl;
       })
     },
+    checkToken () {
+      const token_info = storage.get('token_info');
+      console.log('token_info:', token_info);
+      if (_.isEmpty(token_info)) {
+        return false
+      }
+      let time = new Date().valueOf();
+      let expires_time = token_info.expires_time * 1000;
+      if (time > expires_time) {
+        return false;
+      }
+
+      return true;
+    },
+    delToken () {
+      storage.remove('token_info');
+    },
     getToken () {
+      if (_.isEmpty(authUrl)) {
+        this.$message.error(`无效的授权链接`);
+        return;
+      }
       const that = this;
       let myTimer;
       let times = 1;
@@ -50,7 +69,6 @@ export default {
           if (res.code == 0) {
             clearInterval(myTimer);
             const token_info = res.data.token_info;
-            storage.set('auth_token', token_info.access_token);
             storage.set('token_info', token_info);
             that.redectHome();
             return;
