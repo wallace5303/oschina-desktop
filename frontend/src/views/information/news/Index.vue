@@ -29,14 +29,19 @@
         :title="newsTitle"
         width="100%"
         :visible="detailVisible"
-        :body-style="{ paddingBottom: '80px' }"
+        :body-style="{ panding: '10px' }"
+        :header-style="{ textAlign: 'center' }"
         @close="onDetailClose"
       >
-        <a-space>
+        <a-space :style="{ fontSize: '14px' }">
           <span>作者：{{ newsContent.author }}</span>
           <span>{{ newsContent.pubDate }}</span>
           <span><a-icon type="message" /> {{ newsContent.commentCount }}</span>
         </a-space>
+        <div :style="{ fontSize: '14px', color: '#000' }">
+          <p/>
+          <div v-html="newsContent.body"></div>
+        </div>
       </a-drawer>
     </div>
   </div>
@@ -92,7 +97,7 @@ export default {
   methods: {
     init () {
       const token_info = storage.get('token_info');
-      this.auth_token = token_info.auth_token;
+      this.auth_token = token_info.access_token;
     },
     getNews () {
       const params = {
@@ -111,12 +116,12 @@ export default {
     getNewsDetail (id) {
       const params = {
         access_token: this.auth_token,
-        id,
+        id:id,
         dataType: 'json'
       }
       this.$ipcInvoke(ipcApiRoute.oschina.getNewsDetail, params).then(res => {
-        console.log('res:', this.res)
-        if (_.isEmpty(this.res)) {
+        console.log('res:', res)
+        if (_.isEmpty(res)) {
           this.$message.error('数据不存在');
         }
         this.newsContent = res;
@@ -144,9 +149,9 @@ export default {
 
       return text;
     },
-    showDetail() {
+    showDetail(id) {
       this.detailVisible = true;
-      this.getNewsDetail();
+      this.getNewsDetail(id);
     },
     onDetailClose () {
       console.log('sssss');
@@ -165,14 +170,10 @@ export default {
     padding-top: 10px;
   }
   .one-block-2 {
-    padding-top: 10px;
+    padding-top: 0px;
   }
   .one-block-3 {
     //padding-top: 10px;
-    .news-title {
-      font-size: 16px;
-      color: #000;
-    }
   }
 }
 </style>

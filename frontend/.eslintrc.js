@@ -35,6 +35,7 @@ module.exports = {
     'vue/html-closing-bracket-newline': 0,
     'vue/no-parsing-error': 0,
     'vue/no-unused-vars': "off",
+    "vue/no-v-html":"off",
     'no-tabs': 0,
     'quotes': 0,
     'semi': 0,

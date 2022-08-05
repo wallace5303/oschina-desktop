@@ -55,7 +55,7 @@ export default {
       storage.remove('token_info');
     },
     getToken () {
-      if (_.isEmpty(authUrl)) {
+      if (_.isEmpty(this.authUrl)) {
         this.$message.error(`无效的授权链接`);
         return;
       }
