@@ -45,7 +45,8 @@
       "!frontend/",
       "!run/",
       "!logs/",
-      "!data/"
+      "!data/",
+      "!electron/"
     ],
     "extraResources": {
       "from": "./build/extraResources/",
