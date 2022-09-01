@@ -597,4 +597,5 @@ class ExampleController extends Controller {
   }   
 }
 
+ExampleController.toString = () => '[class ExampleController]';
 module.exports = ExampleController;

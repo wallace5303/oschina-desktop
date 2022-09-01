@@ -96,4 +96,5 @@ class OschinaController extends Controller {
   }   
 }
 
+OschinaController.toString = () => '[class OschinaController]';
 module.exports = OschinaController;

@@ -30,4 +30,5 @@ class CommonController extends Controller {
   }
 }
 
+CommonController.toString = () => '[class CommonController]';
 module.exports = CommonController;

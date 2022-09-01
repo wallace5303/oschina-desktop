@@ -49,4 +49,5 @@ class OscService extends Service {
   }  
 }
 
+OscService.toString = () => '[class OscService]';
 module.exports = OscService;

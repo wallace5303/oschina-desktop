@@ -26,4 +26,5 @@ class CommonService extends Service {
   }  
 }
 
+CommonService.toString = () => '[class CommonService]';
 module.exports = CommonService;
