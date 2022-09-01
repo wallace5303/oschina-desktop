@@ -16,6 +16,7 @@
     "rd": "ee-core rd --dist_dir=./frontend/dist",
     "compress": "ee-core compress",
     "restore": "ee-core restore",
+    "encrypt": "ee-core encrypt --type=bytecode",
     "re-sqlite": "electron-rebuild -f -w better-sqlite3"
   },
   "nodemonConfig": {
@@ -72,7 +73,7 @@
     ],
     "mac": {
       "icon": "./build/icons/icon.icns",
-      "artifactName": "${productName}-macos-${version}.${ext}",
+      "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
       "target": [
         "dmg",
         "zip"
@@ -80,7 +81,7 @@
     },
     "win": {
       "icon": "./build/icons/icon.ico",
-      "artifactName": "${productName}-windows-${version}.${ext}",
+      "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
       "target": [
         {
           "target": "nsis"
@@ -89,7 +90,7 @@
     },
     "linux": {
       "icon": "./build/icons/icon.icns",
-      "artifactName": "${productName}-linux-${version}.${ext}",
+      "artifactName": "${productName}-${os}-${version}-${arch}.${ext}",
       "target": [
         "deb"
       ],
